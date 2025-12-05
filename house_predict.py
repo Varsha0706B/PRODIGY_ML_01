@@ -1,0 +1,37 @@
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# 1) Load the data
+df = pd.read_csv("train.csv")  # from Kaggle data for House Prices
+
+# 2) Basic preprocessing
+#   - drop columns we won’t use (e.g. Id)
+#   - maybe pick a subset of features (or do feature‐engineering/categorical encoding)
+df = df.drop(['Id'], axis=1)
+
+# Example: pick a few numeric features that likely matter
+features = ['GrLivArea', 'TotalBsmtSF', 'OverallQual', 'YearBuilt', 'FullBath', 'TotRmsAbvGrd']
+
+X = df[features]
+y = df['SalePrice']
+
+# 3) Split into train / test
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+    test_size=0.2, random_state=42)
+
+# 4) Train linear regression
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# 5) Look at coefficients
+print("Intercept:", model.intercept_)
+print("Coefficients:", dict(zip(features, model.coef_)))
+
+# 6) Predict & evaluate
+y_pred = model.predict(X_test)
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print("MSE:", mse, "R2:", r2)
