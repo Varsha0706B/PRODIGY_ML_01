@@ -8,8 +8,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 df = pd.read_csv("train.csv")  # from Kaggle data for House Prices
 
 # 2) Basic preprocessing
-#   - drop columns we won’t use (e.g. Id)
-#   - maybe pick a subset of features (or do feature‐engineering/categorical encoding)
+
 df = df.drop(['Id'], axis=1)
 
 # Example: pick a few numeric features that likely matter
