@@ -28,9 +28,7 @@ y_pred = model.predict(X_test)
 print("MSE:", mean_squared_error(y_test, y_pred))
 print("R2:", r2_score(y_test, y_pred))
 
-# -----------------------------------------
-# 🔥 PREDICT PRICE FOR USER INPUT
-# -----------------------------------------
+
 
 gr_liv_area = float(input("Enter square footage (GrLivArea): "))
 bedrooms = int(input("Enter number of bedrooms: "))
