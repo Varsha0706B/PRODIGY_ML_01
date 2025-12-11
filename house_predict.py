@@ -27,3 +27,17 @@ print("Coefficients:", dict(zip(features, model.coef_)))
 y_pred = model.predict(X_test)
 print("MSE:", mean_squared_error(y_test, y_pred))
 print("R2:", r2_score(y_test, y_pred))
+
+# -----------------------------------------
+# 🔥 PREDICT PRICE FOR USER INPUT
+# -----------------------------------------
+
+gr_liv_area = float(input("Enter square footage (GrLivArea): "))
+bedrooms = int(input("Enter number of bedrooms: "))
+bathrooms = int(input("Enter number of bathrooms: "))
+
+# Make prediction
+input_data = np.array([[gr_liv_area, bedrooms, bathrooms]])
+predicted_price = model.predict(input_data)
+
+print("\nPredicted House Price: $", round(predicted_price[0], 2))
